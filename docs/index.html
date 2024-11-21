@@ -1,40 +1,213 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+    <title>reveal.js</title>
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/black.css">
+    <link rel="stylesheet" href="css/custom.css">
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+    <link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <section>
+                <h2>Taschenrechner</h2>
+                <p>Basierend auf dem Windows Taschenrechner</p>
+            </section>
+            <section>
+                <img src="media/Taschenmax/taschenmax.jpg" alt="Taschenrechner">
+            </section>
+        </section>
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
+        <section>
+            <section>
+                <h1>Schere Stein Papier</h1>
+                <p>Ein klassisches Spiel, das Spaß macht!</p>
+            </section>
+            <section>
+                <img src="media/chingChangChong/chingChangChong.jpg" alt="Schere Stein Papier" height="500" width="500">
+                <p>Wähle deine Figur: Schere, Stein, Papier oder Brunnen!</p>
+            </section>
+            <section>
+                <img src="media/chingChangChong/chingChangChongWin.jpg" alt="Gewonnen" height="500" width="500">
+                <p>Herzlichen Glückwunsch! Du hast gewonnen!</p>
+            </section>
+        </section>
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
+        <section>
+            <section>
+                <h2>MineSweeper</h2>
+                <p>Finde die Minen, ohne sie auszulösen!</p>
+            </section>
+            <section>
+                <img src="media/minesweeper/title.jpg" alt="MineSweeper Titel" width="500" height="500">
+                <p>Willkommen bei MineSweeper!</p>
+            </section>
+            <section>
+                <img src="media/minesweeper/game.jpg" alt="MineSweeper Spiel" width="500" height="500">
+                <p>Hier siehst du das Spielfeld von MineSweeper.</p>
+            </section>
+            <section>
+                <img src="media/minesweeper/winningEasy.jpg" alt="Gewonnen bei MineSweeper" width="500" height="500">
+                <p>Du hast das Spiel gewonnen!</p>
+            </section>
+            <section>
+                <img src="media/minesweeper/losingHard.jpg" alt="Verloren bei MineSweeper" width="500" height="500">
+                <p>Leider hast du verloren. Versuch es erneut!</p>
+            </section>
+            <section>
+                <pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers>
+                    public void fieldClicked() {
+            if (fIsOpen) {
+                return;
+            } else if (cfIsBomb) {
+                fStopDESC = true;
+            } else if (!fStopDESC) {
+                nGoodfields--;
+            }
+            unsetFlag();
+            fIsOpen = true;
+            cText.setVisible(true);
+            cBorder.setFill(setTXTcolor(cText));
+            if (cfIsBomb) {
+                fDisplayWL = true;
+                if (!fWon) {
+                    setBomb();
+                    displayWinLoseMessage();
+                } else {
+                    unsetBomb();
+                }
+                for (int i = 0; i < nY_felder; i++) {
+                    for (int j = 0; j < nX_felder; j++) {
+                        grid[j][i].fieldClicked();
+                    }
+                }
+                unsetAllFlags();
+                return;
+            }
+            if (cText.getText().isEmpty()) {
+                getFieldsAround(this).forEach(Feld::fieldClicked);
+            }
+
+            if (nGoodfields == 0) {
+                fDisplayWL = true;
+                fWon = true;
+                displayWinLoseMessage();
+                for (int i = 0; i < nY_felder; i++) {
+                    for (int j = 0; j < nX_felder; j++) {
+                        grid[j][i].fieldClicked();
+                    }
+                }
+                unsetAllFlags();
+            }
+        }
+                </code></pre>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Space Invader</h2>
+                <p>Ein spannendes Weltraumspiel, das Geschicklichkeit erfordert!</p>
+            </section>
+            <section>
+                <img src="media/spaceInvader/titleScreen.jpg" alt="Space Invader Titelbild" width="900">
+                <p>Das Titelbild von Space Invader.</p>
+            </section>
+            <section>
+                <img src="media/spaceInvader/impossible1.jpg" alt="Space Invader Level 1" width="900">
+                <p>Level 1: Überlebe die ersten Angriffe!</p>
+            </section>
+            <section>
+                <img src="media/spaceInvader/impossibleLVL999.jpg" alt="Space Invader Level 999" width="900">
+                <p>Level 999: Eine echte Herausforderung!</p>
+            </section>
+            <section>
+                <img src="media/spaceInvader/bossFight.jpg" alt="Space Invader Bosskampf" width="900">
+                <p>Ein epische Bosskampf</p>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Quiz App</h2>
+                <p>Teste dein Wissen mit unserem Quiz!</p>
+            </section>
+            <section>
+                <img src="media/quizApp/quizTitle.jpg" alt="Quiz App Titel" width="600">
+                <p>Willkommen zur Quiz App! Stelle dein Wissen auf die Probe.</p>
+            </section>
+            <section>
+                <img src="media/quizApp/quizQuestion.jpg" alt="Quiz Frage" width="600">
+                <p>Hier ist eine Beispiel-Frage aus dem Quiz.</p>
+            </section>
+            <section>
+                <img src="media/quizApp/quizQuestionAnswered.jpg" alt="Quiz Frage beantwortet" width="600">
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Crossy Road</h2>
+                <p>Überquere die Straße, ohne überfahren zu werden!</p>
+            </section>
+            <section>
+                <img src="media/crossyRoad/titleScreen.jpg" alt="Crossy Road Titelbild" width="900">
+                <p>Das Titelbild von Crossy Road.</p>
+            </section>
+            <section>
+                <img src="media/crossyRoad/shop.jpg" alt="Crossy Road Shop" width="800">
+                <p>Hier kannst du neue Charaktere im Shop kaufen.</p>
+            </section>
+            <section>
+                <img src="media/crossyRoad/game1.jpg" alt="Crossy Road Spielszene 1" width="800">
+                <p>Eine spannende Spielszene, in der du die Straße überqueren musst.</p>
+            </section>
+            <section>
+                <img src="media/crossyRoad/game2.jpg" alt="Crossy Road Spielszene 2" width="900">
+                <p>Sei vorsichtig! Die Autos kommen schnell!</p>
+            </section>
+            <section>
+                <img src="media/crossyRoad/game3.jpg" alt="Crossy Road Spielszene 3" width="900">
+            </section>
+            <section>
+                <img src="media/crossyRoad/loosingScreen.jpg" alt="Crossy Road Verloren" width="800">
+                <p>Oh nein! Du wurdest überfahren. Versuch es erneut!</p>
+            </section>
+            <section>
+                <img src="media/crossyRoad/classes.jpg" alt="Crossy Road Klassen" width="200">
+                <p>Hier sind die verschiedenen Klassen, die zur Programmierung verwendet wurden</p>
+            </section>
+            <section>
+                <img src="media/crossyRoad/trello.jpg" alt="Crossy Road Trello" width="800">
+                <p>Ein Blick auf das Trello-Board für die Entwicklung des Spiels.</p>
+            </section>
+        </section>
+
+        <section>
+            <h2>Danke für eure Aufmerksamkeit</h2>
+            <section data-background="media/img/paul hält rewo.png" data-background-size="100% 100%"></section>
+            <p>Vielen Dank für eure Aufmerksamkeit! Ich hoffe, euch hat die Präsentation gefallen.</p>
+        </section>
+    </div>
+</div>
+
+<script src="dist/reveal.js"></script>
+<script src="plugin/notes/notes.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
+<script>
+    Reveal.initialize({
+        hash: true,
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+</script>
+</body>
 </html>

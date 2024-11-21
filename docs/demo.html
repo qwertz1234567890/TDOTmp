@@ -87,15 +87,50 @@
 				<section data-auto-animate>
 					<h2 data-id="code-title">Pretty Code</h2>
 					<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers>
-						import React, { useState } from 'react';
+						public void fieldClicked() {
+            if (fIsOpen) {
+                return;
+            } else if (cfIsBomb) {
+                fStopDESC = true;
+            } else if (!fStopDESC) {
+                nGoodfields--;
+            }
+            unsetFlag();
+            fIsOpen = true;
+            cText.setVisible(true);
+            cBorder.setFill(setTXTcolor(cText));
+            if (cfIsBomb) {
+                fDisplayWL = true;
+                if (!fWon) {
+                    setBomb();
+                    displayWinLoseMessage();
+                } else {
+                    unsetBomb();
+                }
+                for (int i = 0; i < nY_felder; i++) {
+                    for (int j = 0; j < nX_felder; j++) {
+                        grid[j][i].fieldClicked();
+                    }
+                }
+                unsetAllFlags();
+                return;
+            }
+            if (cText.getText().isEmpty()) {
+                getFieldsAround(this).forEach(Feld::fieldClicked);
+            }
 
-						function Example() {
-						  const [count, setCount] = useState(0);
-
-						  return (
-						    ...
-						  );
-						}
+            if (nGoodfields == 0) {
+                fDisplayWL = true;
+                fWon = true;
+                displayWinLoseMessage();
+                for (int i = 0; i < nY_felder; i++) {
+                    for (int j = 0; j < nX_felder; j++) {
+                        grid[j][i].fieldClicked();
+                    }
+                }
+                unsetAllFlags();
+            }
+        }
 					</code></pre>
 					<p>Code syntax highlighting courtesy of <a href="https://highlightjs.org/usage/">highlight.js</a>.</p>
 				</section>
